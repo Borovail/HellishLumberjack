@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour, IAttackable
     public void Move() {}
 
     // Logic for player's attack
-    public void Attack() {}
+    public int Attack() { return 0; }
 
     // Logic when player takes damage
     public void TakeDamage(int amount)

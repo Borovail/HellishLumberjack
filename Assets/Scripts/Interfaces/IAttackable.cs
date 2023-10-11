@@ -3,7 +3,7 @@
 interface IAttackable
 {
     // Perform an attack
-    void Attack();
+    int Attack();
 
     // Take damage from an attack
     void TakeDamage(int amount);
