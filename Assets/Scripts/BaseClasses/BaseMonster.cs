@@ -1,14 +1,18 @@
+using System.Collections;
 using UnityEngine;
 
 // Abstract class for monsters with basic behavior.
-abstract class BaseMonster : MonoBehaviour, IAttackable
+public abstract class BaseMonster : MonoBehaviour
 {
-    // Monster's attack logic
-    public abstract void Attack();
+    protected int Health =50;
+    protected int Damage=5;
 
-    // Take damage logic for monster
-    public abstract void TakeDamage(int amount);
 
-    // Logic when the monster dies
-    public abstract void Die();
+    public virtual void Die()
+    {
+
+    }
+
+    public abstract IEnumerator Attack();
+    public virtual void TakeDamage(int amount) { } 
 }
