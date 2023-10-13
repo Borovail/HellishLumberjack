@@ -1,26 +1,18 @@
 
  using UnityEngine;
 // Class for controlling the player's movements and actions like attacking and gathering resources.
-public class PlayerController : MonoBehaviour, IAttackable
+public class PlayerController : MonoBehaviour
 {
     public delegate void HealthChangedEvent(int newHealth);
     public event HealthChangedEvent OnHealthChanged;
 
     int newHealth = 0;
 
-    // Logic for player movement
-    public void Move() {}
-
-    // Logic for player's attack
-    public int Attack() { return 0; }
-
-    // Logic when player takes damage
-    public void TakeDamage(int amount)
+    private void Update()
     {
-        // Update health
-        OnHealthChanged?.Invoke(newHealth);
+        var vector = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) ;
+        transform.position += vector.normalized * 5f * Time.deltaTime;
     }
-
-    // Logic for collecting resources
+    
     public void CollectResource() {}
 }

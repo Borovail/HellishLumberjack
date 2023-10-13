@@ -1,3 +1,5 @@
+using Assets.Scripts.Interfaces;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +7,8 @@ using UnityEngine.Assertions;
 
 public class Monster : BaseMonster
 {
+
+
 
 
     [SerializeField] private Transform player;
@@ -17,7 +21,7 @@ public class Monster : BaseMonster
     private float distanceForAttack = 1.3f;
     private Vector2 capsuleSize = new Vector2(0.5f, 0.5f);
 
-    private void FixedUpdate()
+    private void Update()
     {
         ChasePlayer();
     }
@@ -29,14 +33,15 @@ public class Monster : BaseMonster
     {
         ////may be need to return calculated distanceToPlayer  and after  do attack
         ////and also may be better check for a barrier int other function  and rerun modified direction
-
+        ///
+        Debug.Log(player.position);
         Vector3 direction = (player.position - transform.position).normalized;
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         if(distanceToPlayer < distanceForAttack)
         {
-            if (!IsAttacking) 
-           StartCoroutine( Attack());
+            if (!IsAttacking)
+                StartCoroutine(Attack());
             return;
         }
 
@@ -90,10 +95,11 @@ public class Monster : BaseMonster
         IsAttacking = false;
     }
 
-    //public override void Die()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
+    public override void Die()
+    {
+        Debug.Log("Monster dead");
+
+    }
 
     //public override void TakeDamage(int amount)
     //{
